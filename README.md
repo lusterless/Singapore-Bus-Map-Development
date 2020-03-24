@@ -1,6 +1,6 @@
 # Punggol-Map-Development
 
-This map uses an A* algorithm to reduce the time complexity for calculating each route. A* algorithms are build from dijkstra with enhancement using priority queue and heuristics. In order to further improve the time complexity of accessing each nodes and edges, a DOUBLE HASH table is used.
+This map uses an A* algorithm to reduce the time complexity for calculating each route. A* algorithms are build from dijkstra with enhancement using priority queue and heuristics. In order to further improve the time complexity of accessing each nodes and edges, a DOUBLE HASH table is used to achieve an O(1) complexity.
 - [x] Drive
 - [x] Bus
 - [x] Walk
