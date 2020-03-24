@@ -78,7 +78,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-* **Koh Kai Quan** - *Initial work* - [Lusterless](https://github.com/lusteress)
+* **Koh Kai Quan** - *Initial work* - [Lusterless](https://github.com/lusterless)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
