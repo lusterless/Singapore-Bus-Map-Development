@@ -13,7 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 * Using [pip](https://pip.pypa.io/en/stable/) install:
-** These are the main dependencies, there could be other smaller dependencies such as math modules, time module...**
+* **These are the main dependencies, there could be other smaller dependencies such as math modules, time module**
 ```
 pip install django
 ```
@@ -54,30 +54,18 @@ Run Django-Webserver
 ```
 python manage.py runserver
 ```
-
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+![capture1](https://user-images.githubusercontent.com/57383960/77459367-97abd200-6e3a-11ea-93c9-af2791d3b68f.JPG)
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Go to your browser and enter [URL](127.0.0.1:8000/map)
+```
+127.0.0.1:8000/map
+```
 
 ## Built With
 
+* [Python3](https://www.python.org/downloads/) - Language used
 * [Django](https://www.djangoproject.com/download/) - The web framework used
 * [Django-Leaflet](https://pypi.org/project/django-leaflet/) - Web framework design
 * [OSMnx](https://osmnx.readthedocs.io/en/stable/) - Used to generate graphs
@@ -88,22 +76,12 @@ Add additional notes about how to deploy this on a live system
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Koh Kai Quan** - *Initial work* - [Lusterless](https://github.com/lusteress)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
