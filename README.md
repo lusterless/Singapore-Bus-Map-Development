@@ -31,7 +31,7 @@ pip install geopy
 ```
 pip install osmnx
 ```
-* If you have any trouble installing OSMnx, pip install all files [here](whlfiles) and
+* If you have any trouble installing OSMnx, pip install all files [here](https://github.com/lusterless/Singapore-Bus-Map-Development/tree/master/whl) and
 ```
 pip install geopandas
 ```
