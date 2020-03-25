@@ -13,7 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 * Using [pip](https://pip.pypa.io/en/stable/) install:
-* **These are the main dependencies, there could be other smaller dependencies such as math modules, time module**
+* **These are the main dependencies, there could be other smaller dependencies such as math modules, time modules**
 ```
 pip install django
 ```
