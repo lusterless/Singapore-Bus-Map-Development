@@ -1,0 +1,255 @@
+[
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "70 PUNGGOL CENTRAL PUNGGOL MRT STATION SINGAPORE 828868",
+        "BLK_NO": "70",
+        "BUILDING": "PUNGGOL MRT STATION",
+        "LATITUDE": "1.40454672748107",
+        "LONGITUDE": "103.902072638825",
+        "LONGTITUDE": "103.902072638825",
+        "POSTAL": "828868",
+        "ROAD_NAME": "PUNGGOL CENTRAL",
+        "SEARCHVAL": "PUNGGOL MRT STATION",
+        "X": "35651.384646521",
+        "Y": "42933.2693660688"
+      }
+    ],
+    "Station": "PTC",
+    "Station Name": "Punggol"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "50 PUNGGOL FIELD COVE LRT STATION SINGAPORE 828858",
+        "BLK_NO": "50",
+        "BUILDING": "COVE LRT STATION",
+        "LATITUDE": "1.39928198481483",
+        "LONGITUDE": "103.905961943934",
+        "POSTAL": "828858",
+        "ROAD_NAME": "PUNGGOL FIELD",
+        "SEARCHVAL": "COVE LRT STATION",
+        "X": "36084.2292840881",
+        "Y": "42351.1333773211"
+      }
+    ],
+    "Station": "PE1",
+    "Station Name": "Cove"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "60 PUNGGOL FIELD MERIDIAN LRT STATION SINGAPORE 828857",
+        "BLK_NO": "60",
+        "BUILDING": "MERIDIAN LRT STATION",
+        "LATITUDE": "1.39691205316247",
+        "LONGITUDE": "103.908950216874",
+        "POSTAL": "828857",
+        "ROAD_NAME": "PUNGGOL FIELD",
+        "SEARCHVAL": "MERIDIAN LRT STATION",
+        "X": "36416.7924897084",
+        "Y": "42089.0886109695"
+      }
+    ],
+    "Station": "PE2",
+    "Station Name": "Meridian"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "70 PUNGGOL FIELD CORAL EDGE LRT STATION SINGAPORE 828856",
+        "BLK_NO": "70",
+        "BUILDING": "CORAL EDGE LRT STATION",
+        "LATITUDE": "1.39390922616926",
+        "LONGITUDE": "103.912580855034",
+        "POSTAL": "828856",
+        "ROAD_NAME": "PUNGGOL FIELD",
+        "SEARCHVAL": "CORAL EDGE LRT STATION",
+        "X": "36820.8455250002",
+        "Y": "41757.0642057266"
+      }
+    ],
+    "Station": "PE3",
+    "Station Name": "Coral Edge"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "40 PUNGGOL EAST RIVIERA LRT STATION SINGAPORE 828852",
+        "BLK_NO": "40",
+        "BUILDING": "RIVIERA LRT STATION",
+        "LATITUDE": "1.39452449590886",
+        "LONGITUDE": "103.916166058794",
+        "POSTAL": "828852",
+        "ROAD_NAME": "PUNGGOL EAST",
+        "SEARCHVAL": "RIVIERA LRT STATION",
+        "X": "37219.8292783778",
+        "Y": "41825.1114154644"
+      }
+    ],
+    "Station": "PE4",
+    "Station Name": "Riviera"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "60 PUNGGOL DRIVE KADALOOR LRT STATION SINGAPORE 828853",
+        "BLK_NO": "60",
+        "BUILDING": "KADALOOR LRT STATION",
+        "LATITUDE": "1.39950911293252",
+        "LONGITUDE": "103.916574964987",
+        "POSTAL": "828853",
+        "ROAD_NAME": "PUNGGOL DRIVE",
+        "SEARCHVAL": "KADALOOR LRT STATION",
+        "X": "37265.3156410921",
+        "Y": "42376.2873127777"
+      }
+    ],
+    "Station": "PE5",
+    "Station Name": "Kadaloor"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "50 PUNGGOL DRIVE OASIS LRT STATION SINGAPORE 828854",
+        "BLK_NO": "50",
+        "BUILDING": "OASIS LRT STATION",
+        "LATITUDE": "1.40228667724756",
+        "LONGITUDE": "103.912727355403",
+        "POSTAL": "828854",
+        "ROAD_NAME": "PUNGGOL DRIVE",
+        "SEARCHVAL": "OASIS LRT STATION",
+        "X": "36837.1177746542",
+        "Y": "42683.4017727803"
+      }
+    ],
+    "Station": "PE6",
+    "Station Name": "Oasis"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "40 PUNGGOL DRIVE DAMAI LRT STATION SINGAPORE 828855",
+        "BLK_NO": "40",
+        "BUILDING": "DAMAI LRT STATION",
+        "LATITUDE": "1.40523483636955",
+        "LONGITUDE": "103.908603543654",
+        "POSTAL": "828855",
+        "ROAD_NAME": "PUNGGOL DRIVE",
+        "SEARCHVAL": "DAMAI LRT STATION",
+        "X": "36378.1828010194",
+        "Y": "43009.3794218451"
+      }
+    ],
+    "Station": "PE7",
+    "Station Name": "Damai"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "10 SENTUL CRESCENT SAM KEE LRT STATION SINGAPORE 828851",
+        "BLK_NO": "10",
+        "BUILDING": "SAM KEE LRT STATION",
+        "LATITUDE": "1.40961268528805",
+        "LONGITUDE": "103.904831550608",
+        "POSTAL": "828851",
+        "ROAD_NAME": "SENTUL CRESCENT",
+        "SEARCHVAL": "SAM KEE LRT STATION",
+        "X": "35958.3967099357",
+        "Y": "43493.447022276"
+      }
+    ],
+    "Station": "PW1",
+    "Station Name": "Sam Kee"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "81 PUNGGOL WAY PUNGGOL POINT LRT STATION SINGAPORE 828644",
+        "BLK_NO": "81",
+        "BUILDING": "PUNGGOL POINT LRT STATION",
+        "LATITUDE": "1.41684852058576",
+        "LONGITUDE": "103.906650790673",
+        "POSTAL": "828644",
+        "ROAD_NAME": "PUNGGOL WAY",
+        "SEARCHVAL": "PUNGGOL POINT LRT STATION",
+        "X": "36160.8276229771",
+        "Y": "44293.5561099518"
+      }
+    ],
+    "Station": "PW3",
+    "Station Name": "Punggol Point"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "61 PUNGGOL WAY SAMUDERA LRT STATION SINGAPORE 828645",
+        "BLK_NO": "61",
+        "BUILDING": "SAMUDERA LRT STATION",
+        "LATITUDE": "1.41590171941401",
+        "LONGITUDE": "103.902156316075",
+        "POSTAL": "828645",
+        "ROAD_NAME": "PUNGGOL WAY",
+        "SEARCHVAL": "SAMUDERA LRT STATION",
+        "X": "35660.6596647715",
+        "Y": "44188.8481972627"
+      }
+    ],
+    "Station": "PW4",
+    "Station Name": "Samudera"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "41 PUNGGOL WAY NIBONG LRT STATION SINGAPORE 828862",
+        "BLK_NO": "41",
+        "BUILDING": "NIBONG LRT STATION",
+        "LATITUDE": "1.4118704586919",
+        "LONGITUDE": "103.900313817227",
+        "POSTAL": "828862",
+        "ROAD_NAME": "PUNGGOL WAY",
+        "SEARCHVAL": "NIBONG LRT STATION",
+        "X": "35455.6285503209",
+        "Y": "43743.0854263902"
+      }
+    ],
+    "Station": "PW5",
+    "Station Name": "Nibong"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "31 PUNGGOL WAY SUMANG LRT STATION SINGAPORE 828863",
+        "BLK_NO": "31",
+        "BUILDING": "SUMANG LRT STATION",
+        "LATITUDE": "1.40845242600029",
+        "LONGITUDE": "103.898558454203",
+        "POSTAL": "828863",
+        "ROAD_NAME": "PUNGGOL WAY",
+        "SEARCHVAL": "SUMANG LRT STATION",
+        "X": "35260.2918170346",
+        "Y": "43365.1308389883"
+      }
+    ],
+    "Station": "PW6",
+    "Station Name": "Sumang"
+  },
+  {
+    "Possible Locations": [
+      {
+        "ADDRESS": "21 PUNGGOL WAY SOO TECK LRT STATION SINGAPORE 828864",
+        "BLK_NO": "21",
+        "BUILDING": "SOO TECK LRT STATION",
+        "LATITUDE": "1.40508858446677",
+        "LONGITUDE": "103.897209649938",
+        "POSTAL": "828864",
+        "ROAD_NAME": "PUNGGOL WAY",
+        "SEARCHVAL": "SOO TECK LRT STATION",
+        "X": "35110.1987577695",
+        "Y": "42993.1698571853"
+      }
+    ],
+    "Station": "PW7",
+    "Station Name": "Soo Teck"
+  }
+]
