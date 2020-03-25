@@ -20,7 +20,7 @@ pip install django
 ```
 pip install django-Leaflet
 ```
-* Nodes and edges Files can be found in [Django\map\webmap\data](https://facebook.com)
+* Nodes and edges Files can be found in [Django\map\webmap\data](https://github.com/lusterless/Singapore-Bus-Map-Development/tree/master/Django/map/webmap/data)
 ```
 pip install json
 ```
