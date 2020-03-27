@@ -74,7 +74,7 @@ Go to your browser and enter [URL](127.0.0.1:8000/map)
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/lusterless/Singapore-Bus-Map-Development/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
@@ -84,7 +84,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 * **Joel Cheong Chen Yu**
 * **Yvette Ancheta Sampang**
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](CONTRIBUTING.md) who participated in this project.
 
 ## License
 
