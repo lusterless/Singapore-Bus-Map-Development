@@ -13,7 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 * Using [pip](https://pip.pypa.io/en/stable/) install:
-* **These are the main dependencies, there could be other smaller dependencies such as math modules, time module**
+* **These are the main dependencies, there could be other smaller dependencies such as math modules, time modules**
 ```
 pip install django
 ```
@@ -31,7 +31,7 @@ pip install geopy
 ```
 pip install osmnx
 ```
-* If you have any trouble installing OSMnx, pip install all files [here](whlfiles) and
+* If you have any trouble installing OSMnx, pip install all files [here](https://github.com/lusterless/Singapore-Bus-Map-Development/tree/master/whl) and
 ```
 pip install geopandas
 ```
@@ -74,13 +74,17 @@ Go to your browser and enter [URL](127.0.0.1:8000/map)
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/lusterless/Singapore-Bus-Map-Development/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
 * **Koh Kai Quan** - *Initial work* - [Lusterless](https://github.com/lusterless)
+* **Sim Jacky**
+* **Linus Lee Jun Wei**
+* **Joel Cheong Chen Yu**
+* **Yvette Ancheta Sampang**
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](CONTRIBUTING.md) who participated in this project.
 
 ## License
 
