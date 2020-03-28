@@ -56,7 +56,7 @@ class HomeView(TemplateView):
                 coord_list.insert(0, list(origin))
                 coord_list.append(list(dest))
                 directions = "Head towards " + directions
-                distances = str(distances) + " metres away"
+                distances = "Distance: " + str(distances) + " metres away"
                 coord_list_end = []
                 transportRoute = []
                 transferNo = ""
@@ -68,7 +68,7 @@ class HomeView(TemplateView):
                 coord_list.insert(0, list(origin))
                 coord_list.append(list(dest))
                 directions = "Head towards " + directions
-                distances = str(distances) + " metres away"
+                distances ="Distance: " + str(distances) + " metres away"
                 transportRoute = []
                 coord_list_end = []
                 transferNo = ""
@@ -78,7 +78,7 @@ class HomeView(TemplateView):
                 startdist,startkey,startx,starty,startname = findNearestLrt(self.lrtstation, origin[0], origin[1])
                 enddist,endkey,endx,endy,endname = findNearestLrt(self.lrtstation, dest[0], dest[1])
                 coord_list, transportRoute, coord_list_end, directions, distances = self.calculateShortest((startdist,startkey,startx,starty,startname),(enddist,endkey,endx,endy,endname), origin,dest, start_node, end_node, travel,0)
-                distances = str(distances) + " metres away"
+                distances = "Distance: "+ str(distances) + " metres away"
                 transferNo=""
                 
             else:
@@ -88,10 +88,17 @@ class HomeView(TemplateView):
                 endBsCode ,endname,endx,endy = findNearestBusStop(self.BusStops, dest[0], dest[1])
                 start_time = time.time()
                 coord_list, transportRoute, coord_list_end, directions, distances, transferNo = self.calculateShortest((startBsCode ,startname, startx, starty),(endBsCode ,endname,endx,endy), origin,dest, start_node, end_node, travel, int(cost))
-                distances = str(distances) + " metres away"
-                transferNo = "Number of Transfers: " + str(transferNo-1)
+                if distances == 0:
+                    distances = ""
+                else:
+                    distances = "Distance: " + str(distances) + " metres away"
+                    
+                if transferNo == 0:
+                    transferNo = ""
+                else:
+                    transferNo = "Number of Transfers: " + str(transferNo-1)
                 
-        args =  {'form' : form, 'firstHalf': coord_list,'secondHalf': coord_list_end, 'transportroute': transportRoute, 'directions': directions, 'distances': "Distance: " + distances, "transfers": transferNo}
+        args =  {'form' : form, 'firstHalf': coord_list,'secondHalf': coord_list_end, 'transportroute': transportRoute, 'directions': directions, 'distances': distances, "transfers": transferNo}
         return render(request, self.template_name, args)
         
         
@@ -146,8 +153,13 @@ class HomeView(TemplateView):
                 
         osmid = []
         for number in range(1, len(nearnode)):
-            route = nx.shortest_path(self.drivegraph, source = nearnode[number-1], target = nearnode[number])
-            osmid += route
+            try:
+                route = nx.shortest_path(self.drivegraph, source = nearnode[number-1], target = nearnode[number])
+                osmid += route
+            except:
+                return [], [], [], "Bus goes out of map, Please try another method." , 0, 0
+         
+                
         converted_OSM_to_Coord = []
         for each in osmid:
             try:
