@@ -55,7 +55,7 @@ class HomeView(TemplateView):
                 coord_list,directions, distances = self.calculateShortest("","",origin,dest,str(start_node), str(end_node), travel, 0)
                 coord_list.insert(0, list(origin))
                 coord_list.append(list(dest))
-                directions = "Head towards " + directions
+                directions = "Walk:\nHead towards " + directions
                 distances = "Distance: " + str(distances) + " metres away"
                 coord_list_end = []
                 transportRoute = []
@@ -67,7 +67,7 @@ class HomeView(TemplateView):
                 coord_list, directions,distances = self.calculateShortest("","",origin,dest,str(start_node), str(end_node), travel, 0)
                 coord_list.insert(0, list(origin))
                 coord_list.append(list(dest))
-                directions = "Head towards " + directions
+                directions = "Walk:\nHead towards " + directions
                 distances ="Distance: " + str(distances) + " metres away"
                 transportRoute = []
                 coord_list_end = []
@@ -127,7 +127,7 @@ class HomeView(TemplateView):
             try:
                 bscoord.append([self.BusStops[code]['lat'],self.BusStops[code]['lon'],self.BusStops[code]['name']])
                 if service == None:
-                    directions +=  "\nFrom " + self.BusStops[code]['name'] + ", Board bus " 
+                    directions +=  "\nBus:\nFrom " + self.BusStops[code]['name'] + ", Board bus " 
                 else:
                     if endBsCode == code:
                         directions += "Alight at " + self.BusStops[code]['name'] + "\n"
@@ -171,7 +171,7 @@ class HomeView(TemplateView):
         bs_fh_coord = (startx,starty)
         bs_first_half = ox.get_nearest_node(self.walkgraph,bs_fh_coord, method = 'haversine')
         pathfirst, firsthalfdist = dijkstra(str(start_node),str(bs_first_half),self.walkedges,self.walknodes)
-        firstHalfDirection = "Head towards " + convertToAddress(origin,bs_fh_coord,pathfirst, self.walknodes)
+        firstHalfDirection = "Walk:\nHead towards " + convertToAddress(origin,bs_fh_coord,pathfirst, self.walknodes)
         pathfirst = convertToCoord(pathfirst,self.walknodes)
         pathfirst.insert(0,list(origin))
         pathfirst.append(list(converted_OSM_to_Coord[0]))
@@ -179,7 +179,7 @@ class HomeView(TemplateView):
         bs_eh_coord = (endx,endy)
         bs_endhalf = ox.get_nearest_node(self.walkgraph,bs_eh_coord, method = 'haversine')
         endpath, secondhalfdist = dijkstra(str(bs_endhalf),str(end_node),self.walkedges,self.walknodes)
-        secondHalfDirection = "\nContinue towards " + convertToAddress(bs_eh_coord,dest,endpath, self.walknodes)
+        secondHalfDirection = "\nWalk:\nContinue towards " + convertToAddress(bs_eh_coord,dest,endpath, self.walknodes)
         endpath = convertToCoord(endpath,self.walknodes)
         endpath.insert(0, list(converted_OSM_to_Coord[-1]))
         endpath.append(list(dest))
@@ -201,7 +201,7 @@ class HomeView(TemplateView):
             for ids in lrtpath:
                 if ids in self.lrtstation:
                     if index == 0 and counter == 0:
-                        directions += "\nBoard at " + self.lrtstation[ids][2] + ", "
+                        directions += "\nLRT:\nBoard at " + self.lrtstation[ids][2] + ", "
                         counter += 1
                     elif len(lrtpath)-1 == index:
                         directions += "Alight at " + self.lrtstation[ids][2] + "\n"
@@ -218,7 +218,7 @@ class HomeView(TemplateView):
         lrt_fh_coord = (startx,starty)
         lrt_firsthalf = ox.get_nearest_node(self.walkgraph,lrt_fh_coord, method = 'haversine')
         pathfirst, firsthalfdist = dijkstra(str(start_node),str(lrt_firsthalf),self.walkedges,self.walknodes)
-        firstHalfDirection = "\nHead towards " + convertToAddress(origin,lrt_fh_coord,pathfirst, self.walknodes)
+        firstHalfDirection = "Walk:\nHead towards " + convertToAddress(origin,lrt_fh_coord,pathfirst, self.walknodes)
         pathfirst = convertToCoord(pathfirst,self.walknodes)
         pathfirst.insert(0,list(origin))
         pathfirst.append(list(lrt_fh_coord))
@@ -226,7 +226,7 @@ class HomeView(TemplateView):
         lrt_eh_coord = (endx,endy)
         lrt_endhalf = ox.get_nearest_node(self.walkgraph,lrt_eh_coord, method = 'haversine')
         endpath, secondhalfdist = dijkstra(str(lrt_endhalf),str(end_node),self.walkedges,self.walknodes)
-        secondHalfDirection = "\nContinue towards " + convertToAddress(lrt_eh_coord,dest,endpath, self.walknodes)
+        secondHalfDirection = "\nWalk:\nContinue towards " + convertToAddress(lrt_eh_coord,dest,endpath, self.walknodes)
         endpath = convertToCoord(endpath,self.walknodes)
         endpath.append(list(dest))
         print(self.walknodes[str(lrt_firsthalf)][0]['lat'],self.walknodes[str(lrt_firsthalf)][0]['lon'])
