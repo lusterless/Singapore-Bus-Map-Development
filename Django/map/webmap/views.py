@@ -17,6 +17,7 @@ from webmap.dijkstra import *
 
 class HomeView(TemplateView):
     template_name = 'home.html'
+    #load all nodes and edges of different graphs and store it in its respective variables
     walknodes, walkedges = importFiles('webmap/data/walkedges.geojson','webmap/data/walknodes.geojson')
     drivenodes, driveedges = importFiles('webmap/data/driveedges.geojson','webmap/data/drivenodes.geojson')
     lrtnodes, lrtedges = importFiles('webmap/data/lrtedges.geojson','webmap/data/lrtnodes.json')
@@ -24,9 +25,10 @@ class HomeView(TemplateView):
     """---------------------------------------------------------------------------------creating busmap---------------------------------------------------------------------------------"""
     G = ox.load_graphml("busGraph.graphml")
     """------------------------------------------------------------------------------------------------------------------------------------------------------------"""
+    #load lrt stations
     with open('webmap/data/tograph.json') as f:
         lrtstation = json.load(f)
-    #create graphs of walk and drive
+    #create graphs of walk and drive from exported graph files
     walkgraph = ox.load_graphml("walkGraph.graphml")
     drivegraph = ox.load_graphml("driveGraph.graphml")
     drive_graph_nodes = list(drivegraph.nodes.items())
@@ -39,6 +41,7 @@ class HomeView(TemplateView):
         args = {'form': form, 'firstHalf': [],'secondHalf': [], 'transportroute': [], 'directions': "No Result", 'distances': "", "transfers": ""}
         return render(request, self.template_name, args)
         
+    """---------------------------------------------------------------------------------Post requests---------------------------------------------------------------------------------"""
     def post(self, request):
         form = HomeForm(request.POST)
         if form.is_valid():
