@@ -45,17 +45,22 @@ class HomeView(TemplateView):
     def post(self, request):
         form = HomeForm(request.POST)
         if form.is_valid():
+            #convert user input from form into python readable data
             travel = form.cleaned_data['travel']
             start = form.cleaned_data['start']
             end = form.cleaned_data['end']
             cost = form.cleaned_data['cost_per_transfer']
+            #convert x,y of source and destination into tuple of float
             origin = tuple(map(float, start.split(',')))
             dest = tuple(map(float, end.split(',')))
             #walking ------------------------------------------------------------------------------------
             if travel == "walking":
+                #Using OSMnx, get nearest node on the graph frpm the source and destination
                 start_node = ox.get_nearest_node(self.walkgraph, origin, method = 'haversine')
                 end_node = ox.get_nearest_node(self.walkgraph, dest, method = 'haversine')
+                #call function to calculate shortest route
                 coord_list,directions, distances = self.calculateShortest("","",origin,dest,str(start_node), str(end_node), travel, 0)
+                #Format return type back to HTML template
                 coord_list.insert(0, list(origin))
                 coord_list.append(list(dest))
                 directions = "Walk:\nHead towards " + directions
@@ -63,11 +68,15 @@ class HomeView(TemplateView):
                 coord_list_end = []
                 transportRoute = []
                 transferNo = ""
-            #--------------------------------------------------------------------------------------------
+            #Driving--------------------------------------------------------------------------------------------
             elif travel == "driving":
+            #Using OSMnx, get nearest node on the graph frpm the source and destination
                 start_node = ox.get_nearest_node(self.drivegraph, origin, method = 'haversine')
                 end_node = ox.get_nearest_node(self.drivegraph, dest, method = 'haversine')
+                #call function to calculate shortest route
                 coord_list, directions,distances = self.calculateShortest("","",origin,dest,str(start_node), str(end_node), travel, 0)
+                
+                #Format return type back to HTML template
                 coord_list.insert(0, list(origin))
                 coord_list.append(list(dest))
                 directions = "Walk:\nHead towards " + directions
@@ -75,22 +84,32 @@ class HomeView(TemplateView):
                 transportRoute = []
                 coord_list_end = []
                 transferNo = ""
+            #LRT--------------------------------------------------------------------------------------------
             elif travel == "train":
+            #Using OSMnx, get nearest node on the graph frpm the source and destination
                 start_node = ox.get_nearest_node(self.walkgraph, origin, method = 'haversine')
                 end_node = ox.get_nearest_node(self.walkgraph, dest, method = 'haversine')
+                #find nearest LRT from the source
                 startdist,startkey,startx,starty,startname = findNearestLrt(self.lrtstation, origin[0], origin[1])
+                #find nearest LRT from the Dest
                 enddist,endkey,endx,endy,endname = findNearestLrt(self.lrtstation, dest[0], dest[1])
+                #call function to calculate shortest route
                 coord_list, transportRoute, coord_list_end, directions, distances = self.calculateShortest((startdist,startkey,startx,starty,startname),(enddist,endkey,endx,endy,endname), origin,dest, start_node, end_node, travel,0)
+                #Format return type back to HTML template
                 distances = "Distance: "+ str(distances) + " metres away"
                 transferNo=""
-                
+             #Bus--------------------------------------------------------------------------------------------    
             else:
+            #Using OSMnx, get nearest node on the graph frpm the source and destination
                 start_node = ox.get_nearest_node(self.walkgraph, origin, method = 'haversine')
                 end_node = ox.get_nearest_node(self.walkgraph, dest, method = 'haversine')
+                #find nearest Busstop from the source
                 startBsCode ,startname, startx, starty = findNearestBusStop(self.BusStops, origin[0], origin[1])
+                #find nearest Busstop from the Dest
                 endBsCode ,endname,endx,endy = findNearestBusStop(self.BusStops, dest[0], dest[1])
-                start_time = time.time()
+                #call function to calculate shortest route
                 coord_list, transportRoute, coord_list_end, directions, distances, transferNo = self.calculateShortest((startBsCode ,startname, startx, starty),(endBsCode ,endname,endx,endy), origin,dest, start_node, end_node, travel, int(cost))
+                #Format return type back to HTML template
                 if distances == 0:
                     distances = ""
                 else:
@@ -100,11 +119,14 @@ class HomeView(TemplateView):
                     transferNo = ""
                 else:
                     transferNo = "Number of Transfers: " + str(transferNo-1)
-                
+        
+        #Webserver response with variables
         args =  {'form' : form, 'firstHalf': coord_list,'secondHalf': coord_list_end, 'transportroute': transportRoute, 'directions': directions, 'distances': distances, "transfers": transferNo}
         return render(request, self.template_name, args)
         
         
+    """"Use to calculate different mode of travel"""
+    """Parameters include starttransit(tuple), endtransit(tuple), source, dest, nearest node from source, nearest node from dest, mode of travel, cost of transfer for bus"""
     def calculateShortest(self,starttransit,endtransit,origin,dest, start, end, mode, cost_per_transfer):
         if mode == "walking":
             path, distances = dijkstra(start,end, self.walkedges, self.walknodes)
@@ -117,15 +139,17 @@ class HomeView(TemplateView):
         else:
             return self.calculateBus(starttransit,endtransit, start,end, origin, dest, cost_per_transfer)
         
+        
     def calculateBus(self, starttransit,endtransit, start_node, end_node, origin, dest, cost_per_transfer):
         startBsCode ,startname, startx, starty = starttransit[0], starttransit[1], starttransit[2], starttransit[3]
         endBsCode ,endname,endx,endy = endtransit[0], endtransit[1], endtransit[2], endtransit[3]
-        #calculate busRoute
+        #calculate busRoute using dijkstra for bus
         distances, transfers, path = dijkstra_for_bus(startBsCode,endBsCode,self.busedges, cost_per_transfer)
         #get bus stop coordinates
         bscoord = []
         directions = ""
         previous_service = ""
+        #convert bus ID into coordinates and get directions append to directions variable
         for code, service in path: 
             try:
                 bscoord.append([self.BusStops[code]['lat'],self.BusStops[code]['lon'],self.BusStops[code]['name']])
@@ -142,43 +166,49 @@ class HomeView(TemplateView):
                         directions += "\nSwitch to bus " + service[0] + " at " + self.BusStops[code]['name'] + "\n"
                     else:
                         directions += self.BusStops[code]['name'] + "\n"
+            #check if node is in the graph, else continue. usually means node out of bounds from the area of punggol
             except KeyError as e:
                 continue
         
         nearnode = []
+        #get all nearest edges from busstops in IDs based on their coordinates in bscoord
         for item in bscoord:
             cod = (item[0],item[1])
             geom, u, v = ox.get_nearest_edge(self.G, cod)
             nn = min((u, v), key=lambda n: ox.great_circle_vec(cod[0],cod[1], self.G.nodes[n]['y'], self.G.nodes[n]['x']))
             nearnode.append(int(nn))
             
-        #get directions for bus route ONLY by getting nearest edge -> nearest node between 2 end
-                
         osmid = []
+        #Using osmnx library, connect all edges together to form a bus route
         for number in range(1, len(nearnode)):
             try:
                 route = nx.shortest_path(self.drivegraph, source = nearnode[number-1], target = nearnode[number])
+                #append array of id(route) into osmid
                 osmid += route
             except:
                 return [], [], [], "Bus goes out of map, Please try another method." , 0, 0
          
                 
         converted_OSM_to_Coord = []
+        #convert all id into coordinates
         for each in osmid:
             try:
                 converted_OSM_to_Coord.append([self.Gnodes[each]['y'],self.Gnodes[each]['x']])
             except KeyError as e:
                 continue 
 
-
+        #get shortest path of first part walk from source to nearest busstop before switching graph
         bs_fh_coord = (startx,starty)
         bs_first_half = ox.get_nearest_node(self.walkgraph,bs_fh_coord, method = 'haversine')
         pathfirst, firsthalfdist = dijkstra(str(start_node),str(bs_first_half),self.walkedges,self.walknodes)
+        #covert ID into readable addresses for directions
         firstHalfDirection = "Walk:\nHead towards " + convertToAddress(origin,bs_fh_coord,pathfirst, self.walknodes)
+        #Convert all IDs into coordinates
         pathfirst = convertToCoord(pathfirst,self.walknodes)
         pathfirst.insert(0,list(origin))
         pathfirst.append(list(converted_OSM_to_Coord[0]))
-    
+        
+         #get shortest path of Last part walk from End busstop to Destination
         bs_eh_coord = (endx,endy)
         bs_endhalf = ox.get_nearest_node(self.walkgraph,bs_eh_coord, method = 'haversine')
         endpath, secondhalfdist = dijkstra(str(bs_endhalf),str(end_node),self.walkedges,self.walknodes)
@@ -187,6 +217,7 @@ class HomeView(TemplateView):
         endpath.insert(0, list(converted_OSM_to_Coord[-1]))
         endpath.append(list(dest))
 
+        #return coordinates for first part walk, bus coordinates, second part walk, directions, disntance and number of transfers
         return pathfirst, converted_OSM_to_Coord, endpath, firstHalfDirection + directions + secondHalfDirection , int((distances*1000) + firsthalfdist +secondhalfdist), transfers
                     
     def transitCalculation(self, startlrt, endlrt,  start_node, end_node, origin, dest):

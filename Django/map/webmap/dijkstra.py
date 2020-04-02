@@ -4,10 +4,10 @@ import math
 from geopy.geocoders import Nominatim
 
 def importFiles(edgepath, nodepath):
-    with open(nodepath) as f: #data/walknodes.geojson
+    with open(nodepath) as f: #import nodes from json file
         nodes = json.load(f)
 
-    with open(edgepath) as f: #data/walkedges.geojson
+    with open(edgepath) as f: #import edges from json file
         edges = json.load(f)
     
     #return as dicts/list
@@ -15,6 +15,7 @@ def importFiles(edgepath, nodepath):
     """Convert all id into coordinates for plotting of graphs, Worst-case complexity = O(n)"""
 def convertToCoord(path, nodes): 
     route = []
+    #loop all unique IDs of vertices and covert into coordinates via the nodes dictionary
     for id in path:
         route.append([nodes[id][0]['lat'],nodes[id][0]['lon']])                             
     return route
@@ -24,23 +25,24 @@ def convertToCoord(path, nodes):
 """Loop through a dictionary of LRT stations to compare coordinates, Worst-case complexity = O(n) as it the LRT station could be at the end of the dictionary"""
 def findNearestLrt(lrtstation, x, y):               
     heulist = []
+    #loop all keys and values of lrtstation dictionary and compare x,y with the coordinates of each LRT station
     for key, value in lrtstation.items():
         hval = heuristic(x, y, value[1], value[0])
         heulist.append((hval,key,value[1],value[0],value[2]))                    
     hq.heapify(heulist)
-    dist1,key1,x1,y1, name1 = hq.heappop(heulist)
+    dist1,key1,x1,y1, name1 = hq.heappop(heulist) #return nearest LRT station based on the shortest distance pop from heap queue
     return dist1, key1, x1, y1, name1
     
 """Purpose: Loop through a dictionary of Bus-stops to compare coordinates", return Information of bus stop nearest to current location"""
 """Loop through a dictionary of Bus-stops to compare coordinates, Worst-case complexity = O(n) as it the LRT station could be at the end of the dictionary"""
 def findNearestBusStop(busstops, x, y):                     
     heulist = []
+    #loop all keys and values of busstips dictionary and compare x,y with the coordinates of each busstops
     for key, value in busstops.items():
         hval = heuristic(x,y,value['lat'],value['lon'])
         heulist.append((hval,key,value['name'], value['lat'],value['lon']))  
     hq.heapify(heulist)
-    heuris, bsCode, bsName, lat, lon = hq.heappop(heulist)
-    print(heuris, bsName)
+    heuris, bsCode, bsName, lat, lon = hq.heappop(heulist) #return nearest LRT station based on the shortest distance pop from heap queue
     return bsCode, bsName, lat, lon
 """"Purpose: Convert all IDs from dictionary into coordinates""" 
 """Convert all IDs into coordinates for plotting of graph. Worst-case complexity = O(n)"""             
@@ -96,7 +98,7 @@ def dijkstra(start, end, edgesdict, nodesdict):
             return cur_path, total_dist #return condition
         for node, cur_dist in edgesdict[cur_vertex]:  #loop through all adjacent nodes
             if node not in dist or total_dist + cur_dist < dist[node]: #check if nodes have been visited and relax edges
-                dist[node] = cur_dist + total_dist
+                dist[node] = cur_dist + total_dist #relax the distance
                 priority = cur_dist + total_dist + heuristic(nodesdict[node][0]['lat'],nodesdict[node][0]['lon'],nodesdict[end][0]['lat'],nodesdict[node][0]['lon']) #heuristic check to ensure that the traversal do not go away from the destination node
                 hq.heappush(heap,(priority, node, new_path))
         
@@ -136,8 +138,9 @@ def dijkstra_for_bus(start, end, edgesdict,cost_per_transfer):
                 #push cost into dictionary
                 newCost = cur_dist + curr_cost
                 new_transfers = curr_transfers
-                if (bus,service) != curr_service:
-                    #cost for transfer very expensive to minimize transfer
+                if (bus,service) != curr_service: #check if same bus and service
+                    #cost for transfer =9999 very expensive to minimize transfer
+                    #cost of transfer = 0 means shortest route
                     newCost += cost_per_transfer
                     new_transfers += 1
                 dist[(adj_node,(bus,service))] = newCost
